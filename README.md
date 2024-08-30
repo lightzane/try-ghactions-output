@@ -1,3 +1,5 @@
+# Try Github Actions Output URL
+
 ```yaml
 name: Access Output URL
 
@@ -9,8 +11,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  runs-on: ubuntu-latest
   deploy:
+  runs-on: ubuntu-latest
     environment:
       name: ${{ github.base_ref }}
       url: ${{ steps.generate_url.outputs.URL }}
