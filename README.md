@@ -12,11 +12,11 @@ on:
 
 jobs:
   deploy:
-  runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
     environment:
       name: ${{ github.base_ref }}
       url: ${{ steps.generate_url.outputs.URL }}
-
+  
     steps:
       - name: Generate and Outputs URL
         id: generate_url
