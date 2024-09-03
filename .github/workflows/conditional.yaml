@@ -4,13 +4,15 @@ on:
   push:
     branches: [main]
 
-  workflow_dispatch: # allows manual trigger of workflow
-
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+  
 jobs:
   selection:
     runs-on: ubuntu-latest
     outputs:
       high: ${{ steps.generator.outputs.high }}
+      low: ${{ steps.generator.outputs.low }}
     steps:
       - name: Generate random number between 0-9
         id: generator
