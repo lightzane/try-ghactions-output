@@ -4,12 +4,51 @@ on:
   push:
     branches: [main]
 
+  workflow_dispatch: # allows manual trigger of workflow
+
 jobs:
   selection:
     runs-on: ubuntu-latest
+    outputs:
+      high: ${{ steps.generator.outputs.high }}
     steps:
       - name: Generate random number between 0-9
+        id: generator
         run: |
-          echo "num=$((RANDOM % 10))"
-          echo "The number is: $num"
+          num=$((RANDOM % 10))
+          echo "The number generated is: $num"
+
+          if [ "$num" -ge 5 ]; then
+            echo "high=$num" >> $GITHUB_OUTPUT
+          else
+            echo "low=$num" >> $GITHUB_OUTPUT
+          fi
+
+      - name: HIGH steps
+        if: ${{ steps.generator.outputs.high }}
+        run: |
+          echo "The number is very high: ${{ steps.generator.outputs.high }}"
+
+      - name: low steps
+        if: ${{ steps.generator.outputs.low }}
+        run: |
+          echo "The number is low: ${{ steps.generator.outputs.low }}"
+
+  high:       
+    needs: selection # this can be a list (e.g. needs: [jobA, jobB]
+    if: ${{ needs.selection.outputs.high }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: See number
+        run: |
+          echo "The generated number is HIGH: ${{ needs.selection.outputs.high }}"
+
+  low:       
+    needs: selection # this can be a list (e.g. needs: [jobA, jobB]
+    if: ${{ needs.selection.outputs.low }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: See number
+        run: |
+          echo "The generated number is low: ${{ needs.selection.outputs.low }}"
       
