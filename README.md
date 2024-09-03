@@ -14,7 +14,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     environment:
-      name: ${{ github.base_ref }}
+      # Notice: If NO value in `name`, url will not be displayed in output Job
+      name: main # ${{ github.base_ref }} # No value on push?
       url: ${{ steps.generate_url.outputs.URL }}
   
     steps:
