@@ -1,0 +1,15 @@
+name: Conditional
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  selection:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate random number between 0-9
+        run: |
+          echo "num=$((RANDOM % 10))"
+          echo "The number is: $num"
+      
