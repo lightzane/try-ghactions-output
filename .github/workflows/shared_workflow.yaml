@@ -13,6 +13,8 @@ jobs:
 
   test2:
     uses: lightzane/try-ghactions-sharedwf/.github/workflows/shared.yaml@dev
+    with:
+      example_input: "Hello DEV!"
 
   test3:
     uses: lightzane/try-ghactions-sharedwf/.github/workflows/shared-too.yaml@v3
@@ -21,3 +23,5 @@ jobs:
 
   test4:
     uses: lightzane/try-ghactions-sharedwf/.github/workflows/shared.yaml@v2
+    with:
+      example_input: "Version two"
