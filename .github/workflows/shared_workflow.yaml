@@ -5,9 +5,19 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
+  test1:
     # your-org/repo/.github/workflows/wf-name.yaml@main
     uses: lightzane/try-ghactions-sharedwf/.github/workflows/shared.yaml@v1
     with:
       example_input: "Hello world!"
 
+  test2:
+    uses: lightzane/try-ghactions-sharedwf/.github/workflows/shared.yaml@dev
+
+  test3:
+    uses: lightzane/try-ghactions-sharedwf/.github/workflows/shared-too.yaml@v3
+    with:
+      two: "Number two"
+
+  test4:
+    uses: lightzane/try-ghactions-sharedwf/.github/workflows/shared-too.yaml@v2
