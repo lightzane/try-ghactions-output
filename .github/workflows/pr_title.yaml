@@ -12,7 +12,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Test
+      - name: Check Details
         run: |
           echo "Owner=${{ github.repository_owner }}"
           echo "Repository=${{ github.repository }}"
