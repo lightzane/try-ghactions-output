@@ -21,6 +21,7 @@ jobs:
           echo "Repository=${{ github.repository }}"
           echo "pr_title=${{ github.event.pull_request.title }}"
           echo "PR_TITLE=$pr_title" >> $GITHUB_OUTPUT
+          echo "PR_TITLE=$PR_TITLE" >> $GITHUB_ENV
 
       - name: Rename PR title IF test_me is missing
         if: contains(steps.get_pr_title.outputs.PR_TITLE, 'test_me') == false
