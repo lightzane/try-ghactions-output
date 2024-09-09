@@ -3,7 +3,9 @@ name: Set PR Title
 on:
   pull_request:
     branches: [main]
-    types: [opened]
+    types: 
+      - opened
+      - synchronize
 
 jobs:
   set-title:
@@ -12,9 +14,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Check Details
+      - name: Check Details and get PR title
+        id: get_pr_title
         run: |
           echo "Owner=${{ github.repository_owner }}"
           echo "Repository=${{ github.repository }}"
-          echo "PR title=${{ github.event.pull_request.title }}"
-      
+          echo "PR_TITLE=${{ github.event.pull_request.title }}" >> $GITHUB_OUTPUT
+
+      - name: Rename PR title IF test_me is missing
+        if: contains(steps.get_pr_title.outputs.PR_TITLE, "test_me") == false
+        run: |
+          echo "Running this step..."
