@@ -25,3 +25,8 @@ jobs:
     uses: lightzane/try-ghactions-sharedwf/.github/workflows/shared.yaml@v2
     with:
       example_input: "Version two"
+
+  test5:
+    uses: lightzane/try-ghactions-sharedwf/.github/workflows/shared.yaml@main
+    with:
+      example_input: "LATEST"
