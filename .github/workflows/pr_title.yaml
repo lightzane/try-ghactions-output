@@ -25,6 +25,7 @@ jobs:
         if: contains(steps.get_pr_title.outputs.PR_TITLE, 'test_me') == false
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }} # Make sure token NOT expired (e.g. ghp_ab8CDEFghIjKLM0nOpw4H1ZUQAHrqW26aaag)
+          # Token nust have scopes: public_repo, read:discussion, read:org
         run: |
           # Fetch the PR number
           PR_NUMBER=${{ github.event.pull_request.number }}
