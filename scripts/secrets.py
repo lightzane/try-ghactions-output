@@ -21,7 +21,7 @@ def github_api(SECRET_NAME):
 def get_secret(key):
   return requests.get(
     github_api(key),
-    headers=headers
+    headers=HEADERS
   )
 
 def put_secret(key, enc_value):
@@ -35,7 +35,7 @@ def put_secret(key, enc_value):
 
   return requests.put(
     github_api(key),
-    headers=headers,
+    headers=HEADERS,
     json=jsonData
   )
 
