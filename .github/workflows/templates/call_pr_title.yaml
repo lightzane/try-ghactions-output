@@ -1,0 +1,34 @@
+name: Call PR Title
+
+on:
+  pull_request:
+    branches: 
+      - main
+      - f/call_pr_title
+    types:
+      - opened
+      - synchronize
+  workflow_dispatch:
+
+jobs:
+  # Reference: https://github.com/orgs/community/discussions/26671
+  setup_env:
+    runs-on: ubuntu-latest
+    outputs:
+      repo: ${{ steps.setter.outputs.REPO }}
+      pull_number: ${{ steps.setter.outputs.PULL_NUMBER }}
+    steps:
+      - name: Set env variables
+        id: setter
+        run: |
+          echo "PULL_NUMBER=${{ github.event.pull_request.number }}" >> $GITHUB_OUTPUT
+          echo "REPO=$(basename ${{ github.repository }})" >> $GITHUB_OUTPUT
+    
+  update_pr_title:
+    needs: setup_env
+    uses: lightzane/try-ghactions-sharedwf/.github/workflows/pr_title.yaml@main
+    with:
+      REPO: ${{ needs.setup_env.outputs.repo }}
+      PULL_NUMBER: ${{ needs.setup_env.outputs.pull_number }}
+    secrets:
+      token: ${{ secrets.GH_TOKEN }}
