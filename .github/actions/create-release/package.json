@@ -1,0 +1,11 @@
+{
+  "name": "create-release",
+  "version": "0.1.0",
+  "scripts": {},
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@actions/core": "^1.11.1",
+    "@actions/github": "^6.0.1"
+  }
+}
