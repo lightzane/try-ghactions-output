@@ -1,26 +1,5 @@
-# Try Github Actions Output URL
+# Testing PR
 
-```yaml
-name: Access Output URL
+The workflow for this was copied from the https://github.com/lightzane/try-ghactions-sharedwf
 
-on:
-  push:
-    branches: [main]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    environment:
-      # Notice: If NO value in `name`, url will not be displayed in output Job
-      name: main # ${{ github.base_ref }} # No value on push?
-      url: ${{ steps.generate_url.outputs.URL }}
-  
-    steps:
-      - name: Generate and Outputs URL
-        id: generate_url
-        run: |
-          echo "URL=https://lightzane.github.io/sky-events" >> $GITHUB_OUTPUT
-```
+And the workflow that was copied is calling the shared workflow in that repository.

@@ -4,7 +4,7 @@ on:
   pull_request:
     branches: 
       - main
-      - f/call_pr_title
+      - f/call_pr_title_via_copied
     types:
       - opened
       - synchronize
